@@ -9,27 +9,40 @@ export const AppContextProvider = (props) => {
   const [categories, setCategories] = useState([]);
   const [itemsData, setItemsData] = useState([]);
   const [auth, setAuth] = useState({ token: null, role: null });
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (item) => {
+    const existingItem = cartItems.find(cartItems => cartItems.name === item.name);
+    if(existingItem){
+      setCartItems(cartItems.map(cartItem => cartItem.name === item.name ? {...cartItem, quantity: cartItem.quantity + 1} : cartItem));
+    } else {
+      setCartItems( [...cartItems,{...item, quantity: 1}]);
+    }
+  }
+
+  const removeFromCart = (itemId) => {
+    setCartItems(cartItems.filter(item => item.itemId !== itemId));
+  }
+  
+  const updateQuantity = (itemId, newQuantity) => {
+      setCartItems(cartItems.map(item => item.itemId === itemId ? {...item, quantity: newQuantity} : item));
+  }
 
   useEffect(() => {
     async function loadData() {
-      setLoading(true);
-      try {
-        const [response, itemResponse] = await Promise.all([
-          fetchCategories(),
-          fetchItems(),
-        ]);
-
-        setCategories(response.data);
-        setItemsData(itemResponse.data);
-      } catch (error) {
-        console.error(error);
-        toast.error('Unable to load initial data');
-      } finally {
-        setLoading(false);
-      }
+       if(localStorage.getItem("token") && localStorage.getItem("role")){
+         setAuth(
+          localStorage.getItem("token"),
+          localStorage.getItem("role")
+         );
+       }
+       const response = await fetchCategories();
+       const itemResponse = await fetchItems(); 
+       console.log("item response", itemResponse);
+       setCategories(response.data);
+       setItemsData(response.data);
     }
-
     loadData();
   }, []);
 
@@ -44,7 +57,10 @@ export const AppContextProvider = (props) => {
     setAuthData,
     itemsData,
     setItemsData,
-    loading,
+    addToCart,
+    cartItems,
+    removeFromCart,
+    updateQuantity,
   };
 
   return (
