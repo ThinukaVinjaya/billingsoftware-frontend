@@ -5,6 +5,7 @@ import { createOrder, deleteOrder } from '../../Service/OrderService';
 import { createRazorpayOrder, verifyPayment } from '../../Service/PaymentService';
 import { AppConstants } from '../../util/constants';
 import './CartSummary.css';
+import ReceiptPopup from '../ReceiptPopup/ReceiptPopup';
 
 const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerName }) => {
   const { cartItems, clearCart } = useContext(AppContext);
@@ -22,7 +23,8 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
   };
 
   const placeOrder = () => {
-    //setShowPopup(true);
+    setShowPopup(false);
+    toast.success('Order placed successfully'); 
     clearAll();
   }
 
@@ -81,6 +83,7 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
         clearAll(); // clear cart only after successful payment
       } else if (paymentMode === 'upi') {
         const razorpayLoaded = await loadRazorpayScript();
+        setOrderDetails(savedData);
         if (!razorpayLoaded) {
           toast.error('Unable to load Razorpay');
           await deleteOrderOnFailure(savedData.orderId);
@@ -109,7 +112,7 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
           theme: { color: '#3399cc' },
           modal: {
             ondismiss: async () => {
-              await deleteOrderOnFailure(savedOrder.orderId);
+              await deleteOrderOnFailure(savedData.orderId);
               toast.error('Payment cancelled');
             },
           },
@@ -194,16 +197,29 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
           disabled={isProcessing}
         >
           {isProcessing ? 'Processing...' : 'UPI'}
-        </button>    
+        </button>
       </div>
       <div className="d-flex gap-3 mt-1">
         <button className='btn btn-warning flex-grow-1'
           onClick={placeOrder}
-          //disabled={isProcessing || !orderDetails}
+        //disabled={isProcessing || !orderDetails}
         >
           Place Order
         </button>
       </div>
+      {
+        showPopup && (
+          <ReceiptPopup
+            orderDetails={{
+              ...orderDetails,
+              razorpayOrderId: orderDetails?.paymentDetails?.razorpayOrderId,
+              razorpayPaymentId: orderDetails?.paymentDetails?.razorpayPaymentId,
+            }}
+            onClose={() => setShowPopup(false)}
+            onPrint={handlePrintReceipt}
+          />
+        ) 
+      }
     </div>
   );
 };
