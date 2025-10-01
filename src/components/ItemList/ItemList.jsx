@@ -82,7 +82,6 @@ const ItemList = () => {
 
       {/* Items List */}
       <div className="row g-3 pe-2">
-        {loading && <p className="text-white text-center">Loading items...</p>}
         {!loading && filteredItems.length === 0 && (
           <p className="text-white text-center">No items found</p>
         )}

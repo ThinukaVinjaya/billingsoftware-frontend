@@ -79,6 +79,7 @@ const CategoryForm = props => {
                             placeholder='Category Name'
                             onChange={onChangeHandler}
                             value={data.name}
+                            required
                             />
                     </div>
                     <div className='mb-3'>
@@ -102,6 +103,7 @@ const CategoryForm = props => {
                             onChange={onChangeHandler}
                             value={data.bgColor}
                             placeholder='#ffffff'
+                            
                             />
                     </div>
                     <button type='submit' 
