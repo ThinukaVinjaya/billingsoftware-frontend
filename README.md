@@ -1,12 +1,120 @@
-# React + Vite
+# 🧾 Billing Web Application -- Full-Stack Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my second full-stack test project, built for a **real-world
+retail client**.\
+Through this project, I explored **AWS services**, improved my
+**full‑stack skills**, and gained hands-on experience with new
+technologies.\
+This project greatly strengthened my self-study and understanding of
+end‑to‑end application development.
 
-Currently, two official plugins are available:
+------------------------------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 🛒 Core Billing Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   Category & Product Management\
+-   Product File Upload (Image Support)\
+-   Real-time UI Updates\
+-   Search & Delete Operations\
+-   Image Rendering from File System
+
+### 🧩 Technical Features
+
+-   REST APIs built with **Spring Boot**\
+-   **Image Handling** & storage\
+-   Dynamic UI built with **React.js + Bootstrap 5**\
+-   API integration using **Axios**\
+-   AWS for backend hosting and file storage
+
+------------------------------------------------------------------------
+
+## 🔧 Technologies Used
+
+### **Frontend**
+
+-   React.js\
+-   Bootstrap 5\
+-   Axios
+
+### **Backend**
+
+-   Spring Boot\
+-   Spring Data JPA\
+-   MySQL\
+-   Maven
+
+### **File Storage**
+
+-   AWS Services\
+-   Local Filesystem
+
+------------------------------------------------------------------------
+
+## 🔗 Project Repositories
+
+### **Frontend:**
+
+https://lnkd.in/dtHw82Yw
+
+### **Backend:**
+
+https://lnkd.in/d2cZJCXd
+
+------------------------------------------------------------------------
+
+## 🏗️ System Architecture
+
+    Frontend (React + Bootstrap)
+              ↓
+    REST APIs (Spring Boot)
+              ↓
+    Database (MySQL)
+              ↓
+    File Storage (AWS / Local File System)
+
+------------------------------------------------------------------------
+
+## 📦 How to Run the Project
+
+### ▶️ **Frontend Setup**
+
+``` bash
+cd frontend
+npm install
+npm start
+```
+
+### ▶️ **Backend Setup**
+
+``` bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
+
+------------------------------------------------------------------------
+
+## 🧠 What I Learned
+
+-   Hosting and storage using AWS\
+-   Real-world project structuring\
+-   Full-stack integration and deployment\
+-   Image upload and processing\
+-   Efficient self-study and problem-solving\
+-   Building production-level APIs
+
+------------------------------------------------------------------------
+
+## 🙋‍♂️ Author
+
+**Thinuka Vinjaya Wickramanayaka**\
+Full-Stack Developer \| Spring Boot \| React.js \| AWS Learner
+
+------------------------------------------------------------------------
+
+## ⭐ Support
+
+If this project inspires you, feel free to star the repo and share your
+feedback!
